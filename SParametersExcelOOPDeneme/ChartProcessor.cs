@@ -32,7 +32,7 @@ namespace SParametersExcelOOPDeneme
             SetChatAxisProperties();
 
             string[] seriesNames = { "S11 - dB", "S21 - dB", "S12 - dB", "S22 - dB" };
-            string[] columnName = { "Column1", "Column2", "Column3", "Column4", "Column5", "Column6" };
+            string[] columnName = { "MHz", "", "S11 - dB", "S21 - dB", "S12 - dB", "S22 - dB" };
 
             Series series1 = new Series("S11 - dB");
             Series series2 = new Series("S21 - dB");
@@ -59,13 +59,13 @@ namespace SParametersExcelOOPDeneme
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                double xDegeri = Convert.ToDouble(dataTable.Rows[i]["Column1"]);
+                double xDegeri = Convert.ToDouble(dataTable.Rows[i][dataTable.Columns[0].ColumnName]);
                 for (int j = 0; j < 4; j++)
                 {
                     double yDegeri = 0;
-                    if (dataTable.Rows[i][columnName[j + 2]] != DBNull.Value)
+                    if (dataTable.Rows[i][columnName[j+2]] != DBNull.Value)
                     {
-                        if (double.TryParse(dataTable.Rows[i][columnName[j + 2]].ToString(), out double parsedValue)) 
+                        if (double.TryParse(dataTable.Rows[i][columnName[j + 2]].ToString(), out double parsedValue))
                         {
                             yDegeri = parsedValue;
                         }
@@ -73,6 +73,7 @@ namespace SParametersExcelOOPDeneme
                         {
 
                         }
+
                     }
                     switch (j)
                     {
@@ -115,7 +116,7 @@ namespace SParametersExcelOOPDeneme
         {
             var worksheet = package.Workbook.Worksheets[sheetName];
             int rowIndex = 1;
-            int colIndex = 10;
+            int colIndex = 7;
 
             using (MemoryStream ms = new MemoryStream())
             {

@@ -17,7 +17,7 @@ namespace SParametersExcelOOPDeneme
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnExcelOpen_Click(object sender, EventArgs e)
@@ -37,8 +37,9 @@ namespace SParametersExcelOOPDeneme
                 dataTable = null;
             }
             dataGridViewTumVeriler.DataSource = dataTable;
+            dataGridViewTumVeriler.Columns[1].Visible = false;
             UIHelper uIHelper = new UIHelper();
-            uIHelper.dataGridViewColumnHeaderText(dataTable, 5,dataGridViewTumVeriler);
+            uIHelper.dataGridViewColumnHeaderText(dataTable, 5, dataGridViewTumVeriler);
 
             foreach (var item in excelManager.GetSheetNames(groupBox1.Text))
                 comboBoxSheetNames.Items.Add(item);
@@ -76,15 +77,20 @@ namespace SParametersExcelOOPDeneme
             double minMHz = string.IsNullOrEmpty(selectedMinValue) ? 0 : double.Parse(selectedMinValue);
             double maxMHz = string.IsNullOrEmpty(selectedMaxValue) ? 0 : double.Parse(selectedMaxValue);
 
+            if (minMHz>maxMHz)
+            {
+                filter.Swap(ref minMHz, ref maxMHz);
+            }
+
             try
             {
                 DataTable filteredData = filter.FilterByMHz(originalData, minMHz, maxMHz);
-                dataGridViewSorgulanmisVeriler.DataSource= filteredData;
-
+                dataGridViewSorgulanmisVeriler.DataSource = filteredData;
+                dataGridViewSorgulanmisVeriler.Columns[1].Visible = false;
                 UIHelper uIHelper = new UIHelper();
-                uIHelper.DataGridViewHeaderTextCopy(dataGridViewSorgulanmisVeriler,dataGridViewTumVeriler);
-                
-                ChartProcessor chartProcessor = new ChartProcessor(chart1,textBoxMinMHz,textBoxMaxMHz);
+                uIHelper.DataGridViewHeaderTextCopy(dataGridViewSorgulanmisVeriler, dataGridViewTumVeriler);
+
+                ChartProcessor chartProcessor = new ChartProcessor(chart1, textBoxMinMHz, textBoxMaxMHz);
                 chartProcessor.ShowDataOnChart(filteredData);
 
             }
@@ -108,7 +114,7 @@ namespace SParametersExcelOOPDeneme
 
             DataFilter filterSave = new DataFilter();
 
-            filterSave.SaveFilteredData((DataTable)dataGridViewTumVeriler.DataSource, filePath,saveSheetName,minMHz,maxMHz);
+            filterSave.SaveFilteredData((DataTable)dataGridViewTumVeriler.DataSource, filePath, saveSheetName, minMHz, maxMHz);
 
             ChartProcessor chartProcessor = new ChartProcessor();
             using (ExcelPackage package = new ExcelPackage(new System.IO.FileInfo(groupBox1.Text)))
@@ -121,6 +127,26 @@ namespace SParametersExcelOOPDeneme
             foreach (var item in excelManager.GetSheetNames(groupBox1.Text))
                 comboBoxSheetNames.Items.Add(item);
 
+        }
+
+        private void textBoxMinMHz_TextChanged(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBoxMinMHz.Text, out int girilenSayi))
+            {
+                MessageBox.Show("Sayısal bir değer giriniz!");
+                textBoxMinMHz.Clear();
+                return;
+            }
+        }
+
+        private void textBoxMaxMHz_TextChanged(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBoxMaxMHz.Text, out int girilenSayi))
+            {
+                MessageBox.Show("Sayısal bir değer giriniz!");
+                textBoxMaxMHz.Clear();
+                return;
+            }
         }
     }
 }

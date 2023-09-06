@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridViewTumVeriler = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridViewSorgulanmisVeriler = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBoxMaxMHz = new System.Windows.Forms.TextBox();
+            this.textBoxMinMHz = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxSheetNames = new System.Windows.Forms.ComboBox();
@@ -49,9 +50,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.textBoxMinMHz = new System.Windows.Forms.TextBox();
-            this.textBoxMaxMHz = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTumVeriler)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -140,16 +140,21 @@
             this.tabPage1.Text = "Veri İşlemleri";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // textBoxMaxMHz
             // 
-            this.tabPage2.Controls.Add(this.chart1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1552, 688);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Veri Grafik";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.textBoxMaxMHz.Location = new System.Drawing.Point(1273, 548);
+            this.textBoxMaxMHz.Name = "textBoxMaxMHz";
+            this.textBoxMaxMHz.Size = new System.Drawing.Size(121, 22);
+            this.textBoxMaxMHz.TabIndex = 27;
+            this.textBoxMaxMHz.TextChanged += new System.EventHandler(this.textBoxMaxMHz_TextChanged);
+            // 
+            // textBoxMinMHz
+            // 
+            this.textBoxMinMHz.Location = new System.Drawing.Point(1123, 548);
+            this.textBoxMinMHz.Name = "textBoxMinMHz";
+            this.textBoxMinMHz.Size = new System.Drawing.Size(117, 22);
+            this.textBoxMinMHz.TabIndex = 26;
+            this.textBoxMinMHz.TextChanged += new System.EventHandler(this.textBoxMinMHz_TextChanged);
             // 
             // label1
             // 
@@ -254,37 +259,34 @@
             this.label3.TabIndex = 19;
             this.label3.Text = "Min";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.chart1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1552, 688);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Veri Grafik";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(1546, 682);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            // 
-            // textBoxMinMHz
-            // 
-            this.textBoxMinMHz.Location = new System.Drawing.Point(1123, 548);
-            this.textBoxMinMHz.Name = "textBoxMinMHz";
-            this.textBoxMinMHz.Size = new System.Drawing.Size(117, 22);
-            this.textBoxMinMHz.TabIndex = 26;
-            // 
-            // textBoxMaxMHz
-            // 
-            this.textBoxMaxMHz.Location = new System.Drawing.Point(1273, 548);
-            this.textBoxMaxMHz.Name = "textBoxMaxMHz";
-            this.textBoxMaxMHz.Size = new System.Drawing.Size(121, 22);
-            this.textBoxMaxMHz.TabIndex = 27;
             // 
             // Form1
             // 

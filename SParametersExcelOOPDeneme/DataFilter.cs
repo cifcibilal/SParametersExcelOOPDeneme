@@ -16,7 +16,7 @@ namespace SParametersExcelOOPDeneme
         {
             DataTable filteredTable = originalTable.Clone();
 
-            string mhzColumnName = "Column1";
+            string mhzColumnName = filteredTable.Columns[0].ColumnName;
             DataColumn mhzColumn = originalTable.Columns[mhzColumnName];
 
             if (mhzColumn == null)
@@ -90,13 +90,14 @@ namespace SParametersExcelOOPDeneme
             {
                 //worksheet.Cells[1, col + 1].Value = filteredData.Columns[col].ColumnName;
                 worksheet.Cells[1, 1].Value = "MHz";
-                //worksheet.Cells[1, 2].Value = "";
-                worksheet.Cells[1, 2].Value = "S11 - dB";
-                worksheet.Cells[1, 3].Value = "S21 - dB";
-                worksheet.Cells[1, 4].Value = "S12 - dB";
-                worksheet.Cells[1, 5].Value = "S22 - dB";
+                worksheet.Cells[1, 2].Value = "";
+                worksheet.Cells[1, 3].Value = "S11 - dB";
+                worksheet.Cells[1, 4].Value = "S21 - dB";
+                worksheet.Cells[1, 5].Value = "S12 - dB";
+                worksheet.Cells[1, 6].Value = "S22 - dB";
             }
             // Verileri ekle
+            
             for (int row = 0; row < filteredData.Rows.Count; row++)
             {
                 for (int col = 0; col < filteredData.Columns.Count; col++)
@@ -105,6 +106,12 @@ namespace SParametersExcelOOPDeneme
                 }
             }
             worksheet.Column(2).Hidden = true;
+        }
+        public void Swap(ref double minMHz,ref double maxMHz)
+        {
+            double temp = minMHz;
+            minMHz = maxMHz;
+            maxMHz = temp;
         }
     }
 }

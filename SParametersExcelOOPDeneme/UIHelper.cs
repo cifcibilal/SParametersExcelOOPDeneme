@@ -14,8 +14,8 @@ namespace SParametersExcelOOPDeneme
         {
             foreach (DataGridViewColumn column in dataGridViewHedef.Columns)
             {
-                if (column.Index == 5)
-                    break;
+                //if (column.Index == 5)
+                    //break;
                 column.HeaderText = dataGridViewKaynak.Columns[column.Index].HeaderText;
             }
         }
@@ -29,5 +29,6 @@ namespace SParametersExcelOOPDeneme
                 }
             }
         }
+      
     }
 }

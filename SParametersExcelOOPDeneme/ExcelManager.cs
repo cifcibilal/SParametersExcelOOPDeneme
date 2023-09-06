@@ -49,17 +49,29 @@ namespace SParametersExcelOOPDeneme
                     }
 
                     int startRow = 1;
-                    int endRow = excelWorksheet.Dimension.Columns;
+                    int endRow = excelWorksheet.Dimension.Rows;
                     int endColum = excelWorksheet.Dimension.Columns;
 
                     //excel eksik diye yukarıyı kullanmıyorum;
                     endRow = 604;
                     endColum = 6;
-
+                    string columnHeader;
                     for (int columnIndex = 1; columnIndex <= endColum; columnIndex++)
                     {
-                        string columHeader = excelWorksheet.Cells[startRow, columnIndex].Text;
-                        dataTable.Columns.Add(columHeader);
+                        if (excelWorksheet.Cells[startRow, columnIndex].Text == "")
+                        {
+                            if (excelWorksheet.Cells[startRow, columnIndex].Text == "" && excelWorksheet.Cells[startRow, 1].Text == "")
+                                columnHeader = excelWorksheet.Cells[startRow + 2, columnIndex].Text;
+                            else
+                                columnHeader = excelWorksheet.Cells[startRow, columnIndex].Text;
+                        }
+                        else
+                        {
+                            columnHeader = excelWorksheet.Cells[startRow, columnIndex].Text;
+                        }
+
+
+                        dataTable.Columns.Add(columnHeader);
                     }
                     for (var rowNumber = (startRow + 1); rowNumber <= endRow; rowNumber++)
                     {
@@ -78,7 +90,7 @@ namespace SParametersExcelOOPDeneme
                         }
                         dataTable.Rows.Add(newRow);
                     }
-                    //dataTable.Columns.Remove(dataTable.Columns[1]);
+                    //dataTable.Columns.RemoveAt(1);
                 }
             }
             catch (Exception e)
@@ -108,6 +120,6 @@ namespace SParametersExcelOOPDeneme
                 MessageBox.Show("GetSheetNames içerisinde hata oluştu: " + e.Message);
             }
             return sheetNames;
-        }      
+        }
     }
 }
