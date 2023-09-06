@@ -28,10 +28,9 @@ Bu uygulama, Excel dosyasını açarak belirlediğiniz MHz aralığında bulunan
 
 ## Sürüm Geçmişi
 
-**1.0.0** (2023-09-06)
+**1.0.1** (2023-09-06)
 
-- İlk sürüm yayınlandı
-- Temel özellikler eklendi
+- Verileri kayıt ederken sütunların sağa sola kayması hatası düzeltildi.
 
 ## Katkıda Bulunma
 
