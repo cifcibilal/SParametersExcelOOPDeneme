@@ -72,8 +72,8 @@ namespace SParametersExcelOOPDeneme
                     int startRow = 1;
                     int endRow = excelWorksheet.Dimension.Rows;
                     int endColum = excelWorksheet.Dimension.Columns;
-
-                    //excel eksik diye yukarıyı kullanmıyorum;
+                    //Excel dosyasına göre endRow & endColumn değerleri kontrol edilmelidir.
+                    //UIHelper sınıfı method çağrılarıda buna göre düzenlenmelidir !
                     endRow = 604;
                     endColum = 6;
                     string columnHeader;
@@ -111,7 +111,6 @@ namespace SParametersExcelOOPDeneme
                         }
                         dataTable.Rows.Add(newRow);
                     }
-                    //dataTable.Columns.RemoveAt(1);
                 }
             }
             catch (Exception e)
