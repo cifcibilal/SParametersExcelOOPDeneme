@@ -1,6 +1,6 @@
 # SParametersExcelOOPDeneme
 
-# Bu uygulama, Excel dosyasını açarak belirlediğiniz MHz aralığında bulunan verileri çekmenize ve bu verilerin grafiğini oluşturmanıza olanak tanır. Ayrıca, sonuçları Excel dosyasına kaydetmenize imkan sağlar.
+Bu uygulama, Excel dosyasını açarak belirlediğiniz MHz aralığında bulunan verileri çekmenize ve bu verilerin grafiğini oluşturmanıza olanak tanır. Ayrıca, sonuçları Excel dosyasına kaydetmenize imkan sağlar.
 
 ## Geliştirici
 
