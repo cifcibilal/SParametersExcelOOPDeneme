@@ -19,6 +19,17 @@ namespace SParametersExcelOOPDeneme
             fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             fileDialog.Filter = "Excel Files|*.xlsx";
         }
+        /**
+        * @brief Excel dosyası seçme iletişim kutusunu gösterir ve seçilen dosyanın yolunu döndürür.
+        * 
+        * Bu fonksiyon, kullanıcıya bir Excel dosyası seçme imkanı sunar. Kullanıcı bir dosya seçtiğinde,
+        * seçilen dosyanın yolunu döndürür. Eğer kullanıcı bir dosya seçmez veya işlemi iptal ederse,
+        * null değeri döner.
+        * 
+        * 
+        * 
+        * @return Seçilen Excel dosyasının yolu (filePath) veya null.
+        */
         public string OpenExcelFileDialog()
         {
             if (fileDialog.ShowDialog() == DialogResult.OK)
@@ -30,6 +41,18 @@ namespace SParametersExcelOOPDeneme
                 return null;
             }
         }
+        /**
+        * @brief Verilen Excel dosyasını okuyarak içeriği bir DataTable'a dönüştürür.
+        * 
+        * Bu metod, belirtilen Excel dosyasını açar ve içeriğini bir DataTable'a aktarır. İlgili sayfa (worksheet) seçeneği ile
+        * belirtilen sayfa veya varsayılan olarak ilk sayfa kullanılır. Excel dosyasının her satırı bir DataRow'a ve her hücre değeri
+        * bir DataColumn'a dönüştürülür. Sayfanın başlıkları (column headers) DataColumn adları olarak kullanılır.
+        * 
+        * @param filePath: Okunacak Excel dosyasının yolunu içeren bir dize.
+        * @param selectedSheet: Okunacak sayfanın adını içeren bir dize. Varsayılan olarak ilk sayfa ("0") kullanılır.
+        * 
+        * @return: Excel dosyasının içeriğini temsil eden DataTable.
+        */
         public DataTable ReaderExcelFile(string filePath, string selectedSheet = "0")
         {
             DataTable dataTable = new DataTable();
@@ -99,6 +122,14 @@ namespace SParametersExcelOOPDeneme
             }
             return dataTable;
         }
+        /**
+        * @brief Verilen Excel dosyasındaki tüm sayfa adlarını döndürür.
+        * 
+        * Bu metod, belirtilen Excel dosyasındaki tüm sayfa adlarını bir liste olarak döndürür.
+        * 
+        * @param filePath: Sayfa adlarını almak istediğiniz Excel dosyasının yolunu içeren bir dize.
+        * @return: Excel dosyasındaki tüm sayfa adlarını içeren bir liste.
+        */
         public List<string> GetSheetNames(string filePath)
         {
             List<string> sheetNames = new List<string>();

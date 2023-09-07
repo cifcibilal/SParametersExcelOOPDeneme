@@ -13,6 +13,9 @@ namespace SParametersExcelOOPDeneme
         {
             InitializeComponent();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            btnSorgula.Enabled = false;
+            btnSave.Enabled = false;
+            comboBoxSheetNames.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,13 +40,21 @@ namespace SParametersExcelOOPDeneme
                 dataTable = null;
             }
             dataGridViewTumVeriler.DataSource = dataTable;
-            dataGridViewTumVeriler.Columns[1].Visible = false;
+
+            if (dataGridViewSorgulanmisVeriler != null)
+            {
+                dataGridViewTumVeriler.Columns[1].Visible = false;
+            }
             UIHelper uIHelper = new UIHelper();
             uIHelper.dataGridViewColumnHeaderText(dataTable, 5, dataGridViewTumVeriler);
 
             foreach (var item in excelManager.GetSheetNames(groupBox1.Text))
+            {
                 comboBoxSheetNames.Items.Add(item);
+            }
             comboBoxSheetNames.SelectedIndex = 0;
+            btnSorgula.Enabled = true;
+            comboBoxSheetNames.Enabled = true;
 
         }
 
@@ -93,6 +104,8 @@ namespace SParametersExcelOOPDeneme
                 ChartProcessor chartProcessor = new ChartProcessor(chart1, textBoxMinMHz, textBoxMaxMHz);
                 chartProcessor.ShowDataOnChart(filteredData);
 
+                btnSave.Enabled = true;
+
             }
             catch (Exception ex)
             {
@@ -125,7 +138,9 @@ namespace SParametersExcelOOPDeneme
 
             comboBoxSheetNames.Items.Clear();
             foreach (var item in excelManager.GetSheetNames(groupBox1.Text))
+            {
                 comboBoxSheetNames.Items.Add(item);
+            }
 
         }
 

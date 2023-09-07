@@ -12,6 +12,16 @@ namespace SParametersExcelOOPDeneme
 {
     public class DataFilter
     {
+        /**
+         * @brief Verilen veri tablosunu belirli MHz aralığına göre filtreler.
+         * 
+         * Bu metod, verilen bir veri tablosunu belirli bir MHz aralığına göre filtreler ve sonucu yeni bir veri tablosu olarak döndürür.
+         * 
+         * @param originalTable: Filtrelenmek istenen orijinal veri tablosu.
+         * @param minMHz: Minimum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * @param maxMHz: Maximum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * @return: Filtrelenmiş veri tablosu. (DataTable)
+         */
         public DataTable FilterByMHz(DataTable originalTable, double minMHz, double maxMHz)
         {
             DataTable filteredTable = originalTable.Clone();
@@ -48,6 +58,20 @@ namespace SParametersExcelOOPDeneme
             }
             return filteredTable;
         }
+        /**
+         * @brief Filtrelenmiş verileri belirtilen Excel dosyasına kaydeder.
+         * 
+         * Bu metod, verilen veri tablosunu belirli bir Excel dosyasının belirli bir sayfasına kaydeder. 
+         * Eğer sayfa adı belirtilen sayfa adında bir sayfa varsa, kullanıcıya verilerin üzerine yazılıp yazılmaması sorulur.
+         * 
+         * @param originalData: Kaydedilecek veri tablosu.
+         * @param saveFilePath: Verilerin kaydedileceği Excel dosyasının yolu.
+         * @param saveSheetName: Verilerin kaydedileceği sayfanın adı.
+         * @param minMHz: Minimum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * @param maxMHz: Maximum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * 
+         * @return void
+         */
         public void SaveFilteredData(DataTable originalData,string saveFilePath, string saveSheetName, double minMHz, double maxMHz)
         {
             DataTable filteredData = FilterByMHz(originalData,minMHz,maxMHz);
@@ -97,7 +121,7 @@ namespace SParametersExcelOOPDeneme
                 worksheet.Cells[1, 6].Value = "S22 - dB";
             }
             // Verileri ekle
-            
+
             for (int row = 0; row < filteredData.Rows.Count; row++)
             {
                 for (int col = 0; col < filteredData.Columns.Count; col++)
@@ -107,6 +131,16 @@ namespace SParametersExcelOOPDeneme
             }
             worksheet.Column(2).Hidden = true;
         }
+        /**
+         * @brief İki değeri birbiriyle değiştirir (swap) 
+         * 
+         * Bu metod, iki double değeri birbiriyle değiştirir.
+         * 
+         * @param minMHz: Değiştirilecek ilk değer.
+         * @param maxMHz: Değiştirilecek ikinci değer.
+         * 
+         * @return void
+         */
         public void Swap(ref double minMHz,ref double maxMHz)
         {
             double temp = minMHz;
