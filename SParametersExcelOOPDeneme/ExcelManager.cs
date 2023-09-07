@@ -26,8 +26,6 @@ namespace SParametersExcelOOPDeneme
         * seçilen dosyanın yolunu döndürür. Eğer kullanıcı bir dosya seçmez veya işlemi iptal ederse,
         * null değeri döner.
         * 
-        * 
-        * 
         * @return Seçilen Excel dosyasının yolu (filePath) veya null.
         */
         public string OpenExcelFileDialog()
@@ -124,8 +122,6 @@ namespace SParametersExcelOOPDeneme
         }
         /**
         * @brief Verilen Excel dosyasındaki tüm sayfa adlarını döndürür.
-        * 
-        * Bu metod, belirtilen Excel dosyasındaki tüm sayfa adlarını bir liste olarak döndürür.
         * 
         * @param filePath: Sayfa adlarını almak istediğiniz Excel dosyasının yolunu içeren bir dize.
         * @return: Excel dosyasındaki tüm sayfa adlarını içeren bir liste.

@@ -15,11 +15,10 @@ namespace SParametersExcelOOPDeneme
         /**
          * @brief Verilen veri tablosunu belirli MHz aralığına göre filtreler.
          * 
-         * Bu metod, verilen bir veri tablosunu belirli bir MHz aralığına göre filtreler ve sonucu yeni bir veri tablosu olarak döndürür.
-         * 
          * @param originalTable: Filtrelenmek istenen orijinal veri tablosu.
          * @param minMHz: Minimum MHz değeri (dahil) ile filtreleme işlemi yapar.
          * @param maxMHz: Maximum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * 
          * @return: Filtrelenmiş veri tablosu. (DataTable)
          */
         public DataTable FilterByMHz(DataTable originalTable, double minMHz, double maxMHz)
@@ -105,6 +104,13 @@ namespace SParametersExcelOOPDeneme
             }
 
         }
+        /**
+        * @brief Belirtilen Excel paketine filtrelenmiş verileri belirtilen sayfaya kaydeder.
+        * 
+        * @param package: Verilerin kaydedileceği Excel paketi.
+        * @param filteredData: Kaydedilecek filtrelenmiş veri tablosu.
+        * @param sheetName: Verinin kaydedileceği sayfanın adı.
+        */
         private void SaveFilteredDataToWorksheet(ExcelPackage package, DataTable filteredData, string sheetName)
         {
             ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(sheetName); // Yeni bir sayfa oluştur
