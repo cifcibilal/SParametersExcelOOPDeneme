@@ -12,8 +12,8 @@ namespace SParametersExcelOOPDeneme
     {   /**
          * @brief Kaynak DataGridView'in sütun başlıklarını hedef DataGridView'e kopyalar.
          * 
-         * @param dataGridViewHedef: Sütun başlıkları kopyalanacak hedef DataGridView nesnesi.
-         * @param dataGridViewKaynak: Sütun başlıkları kopyalanacak kaynak DataGridView nesnesi.
+         * @param dataGridViewHedef:DataGridView, Sütun başlıkları kopyalanacak hedef DataGridView nesnesi.
+         * @param dataGridViewKaynak:DataGridView, Sütun başlıkları kopyalanacak kaynak DataGridView nesnesi.
          * 
          * @return void
          */
@@ -29,9 +29,9 @@ namespace SParametersExcelOOPDeneme
         /**
          * @brief Verilen DataTable'dan sütun başlıklarını belirli bir DataGridView'e atar.
          * 
-         * @param dataTable: Sütun başlıkları alınacak DataTable nesnesi.
-         * @param endColumn: Atanacak sütun başlıklarının son sütun indeksi.
-         * @param dataGridView: Sütun başlıkları atanacak DataGridView nesnesi.
+         * @param dataTable:DataTable, Sütun başlıkları alınacak DataTable nesnesi.
+         * @param endColumn:int, Atanacak sütun başlıklarının son sütun indeksi.
+         * @param dataGridView:DataGridView, Sütun başlıkları atanacak DataGridView nesnesi.
          * 
          * @return void
          */

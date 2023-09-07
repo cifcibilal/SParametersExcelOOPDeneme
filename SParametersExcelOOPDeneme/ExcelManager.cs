@@ -46,8 +46,8 @@ namespace SParametersExcelOOPDeneme
         * belirtilen sayfa veya varsayılan olarak ilk sayfa kullanılır. Excel dosyasının her satırı bir DataRow'a ve her hücre değeri
         * bir DataColumn'a dönüştürülür. Sayfanın başlıkları (column headers) DataColumn adları olarak kullanılır.
         * 
-        * @param filePath: Okunacak Excel dosyasının yolunu içeren bir dize.
-        * @param selectedSheet: Okunacak sayfanın adını içeren bir dize. Varsayılan olarak ilk sayfa ("0") kullanılır.
+        * @param filePath:string, Okunacak Excel dosyasının yolunu içeren bir dize.
+        * @param selectedSheet:string, Okunacak sayfanın adını içeren bir dize. Varsayılan olarak ilk sayfa ("0") kullanılır.
         * 
         * @return: Excel dosyasının içeriğini temsil eden DataTable.
         */
@@ -123,7 +123,7 @@ namespace SParametersExcelOOPDeneme
         /**
         * @brief Verilen Excel dosyasındaki tüm sayfa adlarını döndürür.
         * 
-        * @param filePath: Sayfa adlarını almak istediğiniz Excel dosyasının yolunu içeren bir dize.
+        * @param filePath:string, Sayfa adlarını almak istediğiniz Excel dosyasının yolunu içeren bir dize.
         * @return: Excel dosyasındaki tüm sayfa adlarını içeren bir liste.
         */
         public List<string> GetSheetNames(string filePath)

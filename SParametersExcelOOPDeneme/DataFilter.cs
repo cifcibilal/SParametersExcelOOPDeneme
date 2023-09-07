@@ -15,9 +15,9 @@ namespace SParametersExcelOOPDeneme
         /**
          * @brief Verilen veri tablosunu belirli MHz aralığına göre filtreler.
          * 
-         * @param originalTable: Filtrelenmek istenen orijinal veri tablosu.
-         * @param minMHz: Minimum MHz değeri (dahil) ile filtreleme işlemi yapar.
-         * @param maxMHz: Maximum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * @param originalTable:DataTable, Filtrelenmek istenen orijinal veri tablosu.
+         * @param minMHz:double, Minimum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * @param maxMHz:double, Maximum MHz değeri (dahil) ile filtreleme işlemi yapar.
          * 
          * @return: Filtrelenmiş veri tablosu. (DataTable)
          */
@@ -63,11 +63,11 @@ namespace SParametersExcelOOPDeneme
          * Bu metod, verilen veri tablosunu belirli bir Excel dosyasının belirli bir sayfasına kaydeder. 
          * Eğer sayfa adı belirtilen sayfa adında bir sayfa varsa, kullanıcıya verilerin üzerine yazılıp yazılmaması sorulur.
          * 
-         * @param originalData: Kaydedilecek veri tablosu.
-         * @param saveFilePath: Verilerin kaydedileceği Excel dosyasının yolu.
-         * @param saveSheetName: Verilerin kaydedileceği sayfanın adı.
-         * @param minMHz: Minimum MHz değeri (dahil) ile filtreleme işlemi yapar.
-         * @param maxMHz: Maximum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * @param originalData:DataTable, Kaydedilecek veri tablosu.
+         * @param saveFilePath:string Verilerin kaydedileceği Excel dosyasının yolu.
+         * @param saveSheetName:string, Verilerin kaydedileceği sayfanın adı.
+         * @param minMHz:double, Minimum MHz değeri (dahil) ile filtreleme işlemi yapar.
+         * @param maxMHz:double, Maximum MHz değeri (dahil) ile filtreleme işlemi yapar.
          * 
          * @return void
          */
@@ -107,9 +107,9 @@ namespace SParametersExcelOOPDeneme
         /**
         * @brief Belirtilen Excel paketine filtrelenmiş verileri belirtilen sayfaya kaydeder.
         * 
-        * @param package: Verilerin kaydedileceği Excel paketi.
-        * @param filteredData: Kaydedilecek filtrelenmiş veri tablosu.
-        * @param sheetName: Verinin kaydedileceği sayfanın adı.
+        * @param package:ExcelPackage, Verilerin kaydedileceği Excel paketi.
+        * @param filteredData:DataTable, Kaydedilecek filtrelenmiş veri tablosu.
+        * @param sheetName:string, Verinin kaydedileceği sayfanın adı.
         */
         private void SaveFilteredDataToWorksheet(ExcelPackage package, DataTable filteredData, string sheetName)
         {
@@ -142,8 +142,8 @@ namespace SParametersExcelOOPDeneme
          * 
          * Bu metod, iki double değeri birbiriyle değiştirir.
          * 
-         * @param minMHz: Değiştirilecek ilk değer.
-         * @param maxMHz: Değiştirilecek ikinci değer.
+         * @param minMHz:double, Değiştirilecek ilk değer.
+         * @param maxMHz:double, Değiştirilecek ikinci değer.
          * 
          * @return void
          */

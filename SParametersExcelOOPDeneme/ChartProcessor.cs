@@ -31,7 +31,7 @@ namespace SParametersExcelOOPDeneme
          * 
          * Bu metod, veri tablosundaki verileri belirtilen grafik nesnesi üzerinde çizer.
          * 
-         * @param dataTable: Grafik üzerinde gösterilecek veri tablosu.
+         * @param dataTable:DataTable, Grafik üzerinde gösterilecek veri tablosu.
          * 
          * @return void
          */
@@ -104,7 +104,7 @@ namespace SParametersExcelOOPDeneme
          * 
          * Bu metod, grafik eksenlerinin özelliklerini belirler.
          * 
-         * @param dataTable: Grafik üzerinde gösterilecek veri tablosu.
+         * @param dataTable:DataTable, Grafik üzerinde gösterilecek veri tablosu.
          * 
          * @return void
          */
@@ -157,7 +157,7 @@ namespace SParametersExcelOOPDeneme
          * 
          * Bu metod, yeni bir grafik serisi oluşturur ve belirli özelliklerle ayarlar.
          * 
-         * @param seriesNames: Oluşturulan serinin adı.
+         * @param seriesNames:string, Oluşturulan serinin adı.
          * @return: Oluşturulan grafik serisi.
          */
         private Series CreateChartSeries(string seriesNames)
@@ -172,9 +172,9 @@ namespace SParametersExcelOOPDeneme
          * 
          * Bu metod, grafik görüntüsünü belirtilen Excel sayfasına kaydeder.
          * 
-         * @param package: Kaydedilecek Excel paketi.
-         * @param chart: Kaydedilecek grafik nesnesi.
-         * @param sheetName: Verinin kaydedileceği sayfanın adı.
+         * @param package:ExcelPackage, Kaydedilecek Excel paketi.
+         * @param chart:Chart, Kaydedilecek grafik nesnesi.
+         * @param sheetName:string, Verinin kaydedileceği sayfanın adı.
          */
         public void SaveGrafik(ExcelPackage package, Chart chart, string sheetName)
         {
