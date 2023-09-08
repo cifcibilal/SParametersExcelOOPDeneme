@@ -25,18 +25,13 @@ Bu uygulama, Excel dosyasını açarak belirlediğiniz MHz aralığında bulunan
 6. Kaydetme:
    - Çekilen verileri ve grafiği kaydetmek için "Kaydet" butonuna tıklayın.
    - Kaydedilecek sayfa adını ilgili TextBox'a girin ve "Kaydet" butonuna tıklayarak verileri ve grafiği yeni bir sayfaya veya varolan bir sayfaya kaydedin.
+7. Limitline Ekleme:
+   - Eklenecek limitline radio button ile secilir. Gerekli dB (Y Ekseni), Baslangic ve bitis MHz(X Ekseni) degerleri girilir. Ekle butonu kullanilarak grafige eklenir.
 
 ## Sürüm Geçmişi
 
-**1.0.1** (2023-09-06)
+**1.1.1** (2023-09-08)
 
-- Verileri kayıt ederken sütunların sağa sola kayması hatası düzeltildi.
-
-## Katkıda Bulunma
-
-
-## Lisans
-
-
+- Olusturulan grafige limitline ekleme ozelligi getirildi.
 ---
 
