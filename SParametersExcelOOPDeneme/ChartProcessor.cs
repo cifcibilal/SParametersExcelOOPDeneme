@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,16 @@ namespace SParametersExcelOOPDeneme
         private Chart chart;
         private TextBox textBoxMin;
         private TextBox textBoxMax;
+        private TextBox textBoxdB;
+        private Button btnEkle;
+        public ChartProcessor(Chart chart, TextBox textBoxMin, TextBox textBoxMax, TextBox textBoxdB)
+        {
+            this.chart = chart;
+            this.textBoxMin = textBoxMin;
+            this.textBoxMax = textBoxMax;
+            this.textBoxdB = textBoxdB;
+
+        }
         public ChartProcessor(Chart chart, TextBox textBoxMin, TextBox textBoxMax)
         {
             this.chart = chart;
@@ -24,12 +35,10 @@ namespace SParametersExcelOOPDeneme
         }
         public ChartProcessor()
         {
-                
+
         }
         /**
          * @brief Veri tablosundaki verileri grafik olarak gösterir.
-         * 
-         * Bu metod, veri tablosundaki verileri belirtilen grafik nesnesi üzerinde çizer.
          * 
          * @param dataTable:DataTable, Grafik üzerinde gösterilecek veri tablosu.
          * 
@@ -66,7 +75,7 @@ namespace SParametersExcelOOPDeneme
                 for (int j = 0; j < 4; j++)
                 {
                     double yDegeri = 0;
-                    if (dataTable.Rows[i][columnName[j+2]] != DBNull.Value)
+                    if (dataTable.Rows[i][columnName[j + 2]] != DBNull.Value)
                     {
                         if (double.TryParse(dataTable.Rows[i][columnName[j + 2]].ToString(), out double parsedValue))
                         {
@@ -102,8 +111,6 @@ namespace SParametersExcelOOPDeneme
         /**
          * @brief Grafik eksen özelliklerini belirler.
          * 
-         * Bu metod, grafik eksenlerinin özelliklerini belirler.
-         * 
          * @param dataTable:DataTable, Grafik üzerinde gösterilecek veri tablosu.
          * 
          * @return void
@@ -129,9 +136,9 @@ namespace SParametersExcelOOPDeneme
 
                 for (int j = 0; j < 4; j++)
                 {
-                    if (row[columnName[j+2]] != DBNull.Value)
+                    if (row[columnName[j + 2]] != DBNull.Value)
                     {
-                        if (double.TryParse(row[columnName[j+2]].ToString(), out double parsedValue))
+                        if (double.TryParse(row[columnName[j + 2]].ToString(), out double parsedValue))
                         {
                             double yDegeri = parsedValue;
 
@@ -146,16 +153,14 @@ namespace SParametersExcelOOPDeneme
             }
 
             chart.ChartAreas[0].AxisX.Title = "MHz";
-            chart.ChartAreas[0].AxisX.Minimum = int.Parse(textBoxMin.Text)-5;
-            chart.ChartAreas[0].AxisX.Maximum = int.Parse(textBoxMax.Text)+5;
-            chart.ChartAreas[0].AxisY.Maximum = maxY+5;
-            chart.ChartAreas[0].AxisY.Minimum = minY-5;
+            chart.ChartAreas[0].AxisX.Minimum = int.Parse(textBoxMin.Text) - 5;
+            chart.ChartAreas[0].AxisX.Maximum = int.Parse(textBoxMax.Text) + 5;
+            chart.ChartAreas[0].AxisY.Maximum = maxY + 5;
+            chart.ChartAreas[0].AxisY.Minimum = minY - 5;
             chart.ChartAreas[0].AxisY.Title = "dB";
         }
         /**
          * @brief Yeni bir grafik serisi oluşturur.
-         * 
-         * Bu metod, yeni bir grafik serisi oluşturur ve belirli özelliklerle ayarlar.
          * 
          * @param seriesNames:string, Oluşturulan serinin adı.
          * @return: Oluşturulan grafik serisi.
@@ -165,12 +170,10 @@ namespace SParametersExcelOOPDeneme
             Series series = new Series(seriesNames);
             series.ChartType = SeriesChartType.Line;
             series.BorderWidth = 4;
-            return series; 
+            return series;
         }
         /**
          * @brief Grafik görüntüsünü belirtilen Excel sayfasına kaydeder.
-         * 
-         * Bu metod, grafik görüntüsünü belirtilen Excel sayfasına kaydeder.
          * 
          * @param package:ExcelPackage, Kaydedilecek Excel paketi.
          * @param chart:Chart, Kaydedilecek grafik nesnesi.
@@ -187,8 +190,57 @@ namespace SParametersExcelOOPDeneme
                 chart.SaveImage(ms, ChartImageFormat.Png);
                 var picture = worksheet.Drawings.AddPicture("GrafikResmi", ms);
                 picture.SetPosition(rowIndex, 0, colIndex, 0);
-                picture.SetSize(750,350);
+                picture.SetSize(750, 350);
             }
+        }
+        /**
+         * @brief Grafiğe limitline çizgisi ekler.
+         * 
+         * @param limitlineName:string, Eklenecek limitline adı.
+         * 
+         * @return void.
+         */
+        public void LimitLineEkle(string limitLineName)
+        {
+            double x1 = double.Parse(textBoxMin.Text);
+            double x2 = double.Parse(textBoxMax.Text);
+            double y = double.Parse(textBoxdB.Text);
+
+            Series existingSeries = chart.Series.FindByName(limitLineName);
+
+            if (existingSeries != null)
+            {
+                chart.Series.Remove(existingSeries);
+            }
+
+            Series series = new Series();
+            series.Name = limitLineName;
+            series.ChartType = SeriesChartType.Line;
+            series.BorderWidth = 1;
+
+            if (series.Name.Equals("S11_Limitline"))
+            {
+                series.Color = Color.Black;
+            }
+            else if (series.Name.Equals("S21_Limitline"))
+            {
+                series.Color = Color.MidnightBlue;
+            }
+            else if (series.Name.Equals("S12_Limitline"))
+            {
+                series.Color = Color.DarkRed;
+            }
+            else if (series.Name.Equals("S22_Limitline"))
+            {
+                series.Color = Color.DarkGreen;
+            }
+            series.BorderDashStyle = ChartDashStyle.Dash;
+            series.Points.AddXY(x1, y);
+            series.Points.AddXY(x2, y);
+
+            chart.Series.Add(series);
+
+            chart.Invalidate();
         }
     }
 }

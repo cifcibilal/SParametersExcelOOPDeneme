@@ -111,6 +111,7 @@ namespace SParametersExcelOOPDeneme
                         }
                         dataTable.Rows.Add(newRow);
                     }
+                        //dataTable.Columns.RemoveAt(1);
                 }
             }
             catch (Exception e)

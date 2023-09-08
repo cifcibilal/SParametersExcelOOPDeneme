@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using OfficeOpenXml;
 
 namespace SParametersExcelOOPDeneme
 {
     public partial class Form1 : Form
     {
+        
         ExcelManager excelManager = new ExcelManager();
         DataFilter filter = new DataFilter();
         public Form1()
@@ -16,6 +18,9 @@ namespace SParametersExcelOOPDeneme
             btnSorgula.Enabled = false;
             btnSave.Enabled = false;
             comboBoxSheetNames.Enabled = false;
+            btnLimitlineEkle.Enabled = false;
+            groupBox5.Enabled = false;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -105,6 +110,8 @@ namespace SParametersExcelOOPDeneme
                 chartProcessor.ShowDataOnChart(filteredData);
 
                 btnSave.Enabled = true;
+                //btnLimitlineEkle.Enabled = true;
+                groupBox5.Enabled = true;
 
             }
             catch (Exception ex)
@@ -162,6 +169,51 @@ namespace SParametersExcelOOPDeneme
                 textBoxMaxMHz.Clear();
                 return;
             }
+        }
+
+        private void btnLimitlineEkle_Click(object sender, EventArgs e)
+        {
+            ChartProcessor chart = new ChartProcessor(chart1,textBox_LimitLine_MinMHz,textBox_LimitLine_MaxMHz,textBox_LimitLine_dB);
+            chart.LimitLineEkle(lblLimitLineName.Text);
+        }
+
+        private void radioButtonS11_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox_LimitLine_dB.Text = "0";
+            textBox_LimitLine_MinMHz.Text = "0";
+            textBox_LimitLine_MaxMHz.Text = "0";
+            lblLimitLineName.Text = "S11_Limitline";
+            btnLimitlineEkle.Enabled = true;
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox_LimitLine_dB.Text = "0";
+            textBox_LimitLine_MinMHz.Text = "0";
+            textBox_LimitLine_MaxMHz.Text = "0";
+            lblLimitLineName.Text = "S21_Limitline";
+            btnLimitlineEkle.Enabled = true;
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox_LimitLine_dB.Text = "0";
+            textBox_LimitLine_MinMHz.Text = "0";
+            textBox_LimitLine_MaxMHz.Text = "0";
+            lblLimitLineName.Text = "S12_Limitline";
+            btnLimitlineEkle.Enabled = true;
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox_LimitLine_dB.Text = "0";
+            textBox_LimitLine_MinMHz.Text = "0";
+            textBox_LimitLine_MaxMHz.Text = "0";
+            lblLimitLineName.Text = "S22_Limitline";
+            btnLimitlineEkle.Enabled = true;
         }
     }
 }
